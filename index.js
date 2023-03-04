@@ -1,22 +1,46 @@
 let app = new Vue({
     el: '#app',
-    data: { 
-      type : 'Casquette Off White',
-    // tableaux de données des images
-     product: [
-        { id: 1, name: 'Casquette Off White', img: 'img/OffWhite.jpg',description: 'Casquette premium', price : 250, quantity : 4},
-        { id:2 ,name: 'Casquette Supreme', img: 'img/Supreme.jpg', description:'Casquette Hype',  price : 100, quantity : 5},
-        { id: 3, name: 'Casquette NY', img: 'img/Ny.jpg', description:'Casquette de baseball', price : 50, quantity : 6},
-        { id: 4, name: 'Casquette', img: 'img/casquette.jpg', description:'Casquette lamda',  price : 20, quantity : 5},
-        
-        ],
-      panier: [
+    data: {
+        type: 'Casquette Off White',
+        // tableaux de données des produits
+        product: [
+            {
+                id: 1,
+                name: 'Casquette Off White',
+                img: 'img/OffWhite.jpg',
+                description: 'Casquette premium',
+                price: 250,
+                quantity: 4
+            },
+            {
+                id: 2,
+                name: 'Casquette Supreme',
+                img: 'img/Supreme.jpg',
+                description: 'Casquette Hype',
+                price: 100,
+                quantity: 5
+            },
+            {
+                id: 3,
+                name: 'Casquette NY',
+                img: 'img/Ny.jpg',
+                description: 'Casquette de baseball',
+                price: 50,
+                quantity: 6
+            },
+            {
+                id: 4,
+                name: 'Casquette',
+                img: 'img/casquette.jpg',
+                description: 'Casquette lamda',
+                price: 20,
+                quantity: 5
+            },
 
         ],
-
-
+        panier: [],
     },
-  
+
     methods: {
         // fonction pour changer le type de produit
         changeType(type) {
@@ -25,33 +49,27 @@ let app = new Vue({
         },
 
         // fonction pour ajouter un produit au panier diminue la quantité du product et augmente la quantité du panier si le panier a déjà le produit l'augmenter et additionner le prix
-        addProduct(product) {
+        addProduct(type) {
+            product = this.product.find(p => p.name === type);
             console.log(product.quantity);
-            if(product.quantity > 0){
+            if (product.quantity > 0) {
                 product.quantity--;
                 console.log("add product");
-                if(this.panier.find(p => p.id === product.id)){
-                    // augmenter la quantité du panier et additionner le prix en fonction du produit
-                    this.panier.find(p => p.id === product.id).quantity++;
-                    
-                }else{
+                if (this.panier.find(p => p.id === product.id)) {
+                    this.panier.find(p => p.id === product.id).quantity++
+                } else {
                     this.panier.push({id: product.id, name: product.name, price: product.price, quantity: 1});
-                                       
                 }
             }
         },
-        // fonction pour vider le panier
+        // fonction pour vider le panier et remettre product à la quantité initiale
         emptyCart() {
-            console.log("empty cart");
-            this.panier = [];
-            this.product = [
-                { id: 1, name: 'Casquette Off White', img: 'img/OffWhite.jpg',description: 'Personnage de grande taille', color : 'red', price : 10, quantity : 4},
-                { id:2 ,name: 'Casquette Supreme', img: 'img/Supreme.jpg', description:'Object hyper puissant', color : 'blue', price : 20, quantity : 5},
-                { id: 3, name: 'Casquette NY', img: 'img/Ny.jpg', description:'Personnage sans sentiment, sans émotion', color : 'yellow' , price : 30, quantity : 6},
-                { id: 4, name: 'Casquette', img: 'img/jedi.jpg', description:'Personnage de grande taille', color : 'blue', price : 40, quantity : 5},
-                
-                ];
+              this.panier.forEach(p => {
+                    this.product.find(p2 => p2.id === p.id).quantity += p.quantity;
+                });
+                this.panier = [];
         },
+
         //fonction pour afficher le prix total du panier
         totalPrice() {
             let total = 0;
@@ -60,6 +78,7 @@ let app = new Vue({
             });
             return total;
         },
+        // fonction pour compter le nombre d'articles dans le panier
         totalArticles() {
             let total = 0;
             this.panier.forEach(p => {
@@ -67,9 +86,8 @@ let app = new Vue({
             });
             return total;
         },
-       
-    },
-  
-});
+    }
+})
+;
 
   
