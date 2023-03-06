@@ -37,7 +37,7 @@ let app = new Vue({
                 price: 20,
                 quantity: 5
             },
-            {
+
 
 
 
