@@ -1,6 +1,7 @@
 let app = new Vue({
     el: '#app',
     data: {
+        vip: 5,
         type: 'Casquette Off White',
         // tableaux de données des produits
         product: [
@@ -36,6 +37,9 @@ let app = new Vue({
                 price: 20,
                 quantity: 5
             },
+            {
+
+
 
         ],
         panier: [],
@@ -51,10 +55,8 @@ let app = new Vue({
         // fonction pour ajouter un produit au panier diminue la quantité du product et augmente la quantité du panier si le panier a déjà le produit l'augmenter et additionner le prix
         addProduct(type) {
             product = this.product.find(p => p.name === type);
-            console.log(product.quantity);
             if (product.quantity > 0) {
                 product.quantity--;
-                console.log("add product");
                 if (this.panier.find(p => p.id === product.id)) {
                     this.panier.find(p => p.id === product.id).quantity++
                 } else {
