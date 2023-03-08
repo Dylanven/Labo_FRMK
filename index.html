@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody><!--v-for pour prendre tout les infos qui se trouver dans le panier-->
-            <tr v-for="(paniers, index) in panier" v-bind:key="paniers.id">
+            <tr v-for="(paniers) in panier" v-bind:key="paniers.id">
                 <td>{{paniers.name}}</td>
                 <td>{{paniers.price}} Chf</td>
                 <td>{{paniers.quantity}} Nombre(s)</td>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="container border">
-        <figure v-for="(products, index) in product" v-bind:key="products.id" v-if="products.name === type">
+        <figure v-for="(products) in product" v-bind:key="products.id" v-if="products.name === type">
             <img class="m-lg-4 img-thumbnail img-fluid" v-bind:src="products.img" v-bind:alt="products.name">
             <div>
 
@@ -64,7 +64,7 @@
 
         </figure>
         <figure class="d-inline-block" v-for="(products, index) in product" v-bind:key="products.id">
-            <p class="m-lg-4" v-if="index === 0" class="">Models :</p>
+            <p class="m-lg-4" v-if="index === 0" >Models :</p>
             <img class="w-50 img-fluid img-thumbnail"
                  v-bind:class="{'alert alert-dark': type === products.name}" v-bind:src="products.img"
                  @click="changeType(products.name)" v-bind:alt="products.name">
