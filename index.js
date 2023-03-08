@@ -2,6 +2,8 @@ let app = new Vue({
     el: '#app',
     data: {
         vip: 5,
+        rupturedestock: 0,
+        stocklimit: 2,
         type: 'Casquette Off White',
         // tableaux de données des produits
         product: [

@@ -47,17 +47,17 @@
     </div>
 
     <div class="container border">
-        <figure v-for="(products, index) in product" v-bind:key="products.id">
-            <img class="m-lg-4 img-thumbnail img-fluid" v-if="products.name === type" v-bind:src="products.img" v-bind:alt="products.name">
+        <figure v-for="(products, index) in product" v-bind:key="products.id" v-if="products.name === type">
+            <img class="m-lg-4 img-thumbnail img-fluid"  v-bind:src="products.img" v-bind:alt="products.name">
             <div>
 
                     <div class="col">
-                        <h3 class="mb-4 m-lg-4" v-if="products.name === type" >Name: {{products.name}}</h3>
-                        <p class="mb-4  m-lg-4" v-if="products.name === type">Description: {{products.description}}</p>
-                        <p class="mb-4  m-lg-4" v-if="products.name === type">Prix: {{products.price}} Chf</p>
-                        <p class="mb-4 m-lg-4" v-if="products.name === type && products.quantity > 1">{{products.quantity}} en stock</p>
-                        <p  v-if="products.name === type && products.quantity === 1" class="text-warning mb-4 m-lg-4">Stock Limité</p>
-                        <p v-if="products.name === type && products.quantity === 0" class="text-danger mb-4 m-lg-4">Rupture de Stock</p>
+                        <h3 class="mb-4 m-lg-4" >Name: {{products.name}}</h3>
+                        <p class="mb-4  m-lg-4" >Sescription: {{products.description}}</p>
+                        <p class="mb-4  m-lg-4" >Prix: {{products.price}} Chf</p>
+                        <p class="mb-4 m-lg-4" v-if="products.quantity > stocklimit">{{products.quantity}} en stock</p>
+                        <p  v-if=" products.quantity <= stocklimit && products.quantity > rupturedestock" class="text-warning mb-4 m-lg-4">Stock Limité</p>
+                        <p v-if="products.quantity === rupturedestock" class="text-danger mb-4 m-lg-4">Rupture de Stock</p>
                     </div>
             </div>
 
