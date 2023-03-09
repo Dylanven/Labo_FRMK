@@ -1,3 +1,6 @@
+// Dylan Venancio
+// projet FRMK
+// 09.03.2023
 new Vue({
     el: '#app',
     data: {
@@ -39,10 +42,6 @@ new Vue({
                 price: 20,
                 quantity: 5
             },
-
-
-
-
         ],
         panier: [],
     },
@@ -54,7 +53,8 @@ new Vue({
             this.type = type;
         },
 
-        // fonction pour ajouter un produit au panier diminue la quantité du product et augmente la quantité du panier si le panier a déjà le produit l'augmenter et additionner le prix
+        // fonction pour ajouter un produit au panier diminue la quantité
+        // du product et augmente la quantité du panier si le panier a déjà le produit l'augmenter et additionner le prix
         addProduct(type) {
             product = this.product.find(p => p.name === type);
             if (product.quantity > 0) {

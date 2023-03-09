@@ -1,11 +1,12 @@
+<!--Dylan Venancio-->
+<!--Projet FRMK-->
+<!--09.03.2023-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-
     <title>Mon Shop</title>
     <link rel="stylesheet" href="CSS/bootstrap.min.css">
-
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark"><h1 class="text-white">Mon Shop</h1></nav>
@@ -42,11 +43,12 @@
                 <td></td>
             </tr>
             </tbody>
-        </table><!--<p class="p-2">Nombre Articles Total : {{totalArticles()}}</p>-->
+        </table>
         <p class="p-2 alert alert-success" v-if="totalArticles() >= vip">Vous êtes un client premium</p>
     </div>
 
     <div class="container border">
+        <!--v-for pour afficher les donner de l'articles qui est selectionner-->
         <figure v-for="(products) in product" v-bind:key="products.id" v-if="products.name === type">
             <img class="m-lg-4 img-thumbnail img-fluid" v-bind:src="products.img" v-bind:alt="products.name">
             <div>
@@ -63,6 +65,7 @@
             </div>
 
         </figure>
+        <!--v-for pour afficher les des différent models d'articles-->
         <figure class="d-inline-block" v-for="(products, index) in product" v-bind:key="products.id">
             <p class="m-lg-4" v-if="index === 0" >Models :</p>
             <img class="w-50 img-fluid img-thumbnail"
@@ -74,7 +77,6 @@
             <button class="btn btn-primary my-3" @click="addProduct(type)">Ajouter au panier</button>
         </div>
     </div>
-
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
